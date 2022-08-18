@@ -8,15 +8,15 @@ export class AppService {
     private readonly kafkaProducer: Producer,
   ) {}
 
-  async consultarMaster(query,params,body){
+  async searchMaster(query:string,params:Object,body:any){
     body.generales['sql'] = query;
     body.generales['params'] = params;
-    body.generales.operacion = 'consultar';
+    body.generales.operacion = 'search';
 
     this.sendMessage('nest_nododatos', body, 'nest_gateway');
   }
 
-  async sendMessage(topic, data, key?) {
+  async sendMessage(topic:string, data:Object, key?:string) {
     return this.kafkaProducer.send({
       topic,
       messages: [

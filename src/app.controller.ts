@@ -54,11 +54,11 @@ export class AppController {
   }
 
   @Get('/api/nestjs')
-  async getProcesarConsulta(@Res() req, @Headers() headers) {
+  async getProcessQuery(@Res() req, @Headers() headers) {
     try{
       let valid = this.jwtService.verify(headers.authorization.replace("Bearer ",""), {publicKey: "fsdg435trf435reft34erfdh54tgrse56tgsree5e6tegrrs"});
       console.log(valid);
-      this.procesarConsulta(req);
+      this.ProcessQuery(req);
     }catch(err){
       console.log("Error = "+err);
       return req.status(HttpStatus.UNAUTHORIZED).json({ status: ""+err });
@@ -66,11 +66,11 @@ export class AppController {
   }
 
   @Post('/api/nestjs')
-  async postProcesarConsulta(@Res() req, @Headers() headers) {
+  async postProcessQuery(@Res() req, @Headers() headers) {
     try{
       let valid = this.jwtService.verify(headers.authorization.replace("Bearer ",""), {publicKey: "fsdg435trf435reft34erfdh54tgrse56tgsree5e6tegrrs"});
       console.log(valid);
-      this.procesarConsulta(req);
+      this.ProcessQuery(req);
     }catch(err){
       console.log("Error = "+err);
       return req.status(HttpStatus.UNAUTHORIZED).json({ status: ""+err });
@@ -78,11 +78,11 @@ export class AppController {
   }
 
   @Put('/api/nestjs')
-  async putProcesarConsulta(@Res() req, @Headers() headers) {
+  async putProcessQuery(@Res() req, @Headers() headers) {
     try{
       let valid = this.jwtService.verify(headers.authorization.replace("Bearer ",""), {publicKey: "fsdg435trf435reft34erfdh54tgrse56tgsree5e6tegrrs"});
       console.log(valid);
-      this.procesarConsulta(req);
+      this.ProcessQuery(req);
     }catch(err){
       console.log("Error = "+err);
       return req.status(HttpStatus.UNAUTHORIZED).json({ status: ""+err });
@@ -90,18 +90,18 @@ export class AppController {
   }
 
   @Delete('/api/nestjs')
-  async deleteProcesarConsulta(@Res() req, @Headers() headers) {
+  async deleteProcessQuery(@Res() req, @Headers() headers) {
     try{
       let valid = this.jwtService.verify(headers.authorization.replace("Bearer ",""), {publicKey: "fsdg435trf435reft34erfdh54tgrse56tgsree5e6tegrrs"});
       console.log(valid);
-      this.procesarConsulta(req);
+      this.ProcessQuery(req);
     }catch(err){
       console.log("Error = "+err);
       return req.status(HttpStatus.UNAUTHORIZED).json({ status: ""+err });
     }
   }
 
-  async procesarConsulta(req) {
+  async ProcessQuery(req: any) {
     try {
       console.log(req.req.method);
       let body;
@@ -130,7 +130,7 @@ export class AppController {
   }
 
   @MessagePattern('nest_gateway') // Our topic name
-  getHello(@Payload() message) {
+  getGateway(@Payload() message) {
     console.log('Gateway');
     const sub = message.contador;
     console.log('Message = ' + sub);
